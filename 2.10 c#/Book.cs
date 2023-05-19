@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,16 +18,6 @@ namespace Laba_2._10
             this.BookTitle = BookTitle;
             this.Author = Author;
             this.YearOfPublication = YearOfPublication;
-        }
-
-        public void ShowAllBooks()
-        {
-            Console.WriteLine("All books in the library:");
-
-            Console.Write($"\nTitle book: {BookTitle}" +
-                          $"\nAuthor:{Author}" +
-                          $"\nYear of publication:  {YearOfPublication}");
-            Console.WriteLine("\n");
         }
     }
 }
