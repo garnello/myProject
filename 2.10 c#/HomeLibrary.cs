@@ -17,6 +17,11 @@ namespace Laba_2._10
             new Book("Bok", "Doon", 2009),
         };
 
+        public HomeLibrary()
+        {
+            this.books = books;
+        }
+
         public void AddNewBook() // Добавление книги
         {
             Console.Write("\nEnter title book: ");
@@ -53,7 +58,7 @@ namespace Laba_2._10
                     var sortedBooksOnAuthor = books.OrderBy(book => book.Author);
 
                     foreach (var p in sortedBooksOnAuthor)
-                        Console.Write($"Book: {p.BookTitle}\n" +
+                        Console.Write($"\nBook: {p.BookTitle}\n" +
                                       $"Author: {p.Author}\n" +
                                       $"Year of publication: {p.YearOfPublication}\n\n");
                     break;
@@ -84,9 +89,77 @@ namespace Laba_2._10
 
         public void SearchBy() // Поиск книг по...
         {
+            Console.Write("\nEnter action:\n" +
+                          "1. Find on title book.\n" +
+                          "2. Find on name author.\n" +
+                          "3. Find on year of publication.\n" +
+                          "Choice: ");
+            int choiceFind = Convert.ToInt32(Console.ReadLine());
 
+            switch (choiceFind)
+            {
+                case 1: // Поиск по названию книги
+
+                    Console.Write("Enter your title books: ");
+                    string findTitle = Console.ReadLine();
+
+                    var findBookOnTitle = from book in books
+                        where book.BookTitle == findTitle
+                        select book;
+                    foreach (var book in findBookOnTitle)
+                        Console.Write(($"\n" +
+                                                $"Title: {book.BookTitle}\n" +
+                                                $"Author: {book.Author}\n" +
+                                                $"Year of publication: {book.YearOfPublication}. \n\n"));
+                    break;
+
+                case 2: // Поиск по автору книги
+
+                    Console.Write("Enter name author: ");
+                    string findAuthor = Console.ReadLine();
+
+                    var findBookOnAuthor = from book in books
+                        where book.Author == findAuthor
+                        select book;
+                    foreach (var book in findBookOnAuthor)
+                        Console.Write($"\n" +
+                                      $"Title: {book.BookTitle}\n" +
+                                      $"Author: {book.Author}\n" +
+                                      $"Year of publication: {book.YearOfPublication}. \n\n");
+                    break;
+
+                case 3: // Поиск по дате издания
+
+                    Console.Write("Enter year of publication: ");
+                    int findYear = Convert.ToInt32(Console.ReadLine());
+
+                    var findBookOnYear = from book in books
+                        where book.YearOfPublication == findYear
+                        select book;
+                    foreach (var book in findBookOnYear)
+                        Console.Write($"\n" +
+                                      $"Title: {book.BookTitle}\n" +
+                                      $"Author: {book.Author}\n" +
+                                      $"Year of publication: {book.YearOfPublication}. \n\n");
+                    break;
+
+                default:
+                    Console.WriteLine("Error xD");
+                    break;
+            }
+        }
+
+        public void ShowAllBooks()
+        {
+            Console.WriteLine("All books in the library:");
+            foreach (var book in books)
+            {
+                Console.Write($"\nTitle book: {book.BookTitle}" +
+                              $"\nAuthor:{book.Author}" +
+                              $"\nYear of publication:  {book.YearOfPublication}");
+                Console.WriteLine("\n");
+            }
         }
     }
 }
-
 
